@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+    <head>
+        <Title></Title>
+    </head>
+    <body>
+
+            <label>total</label><br>
+            <input id="total" type="number"><br>
+
+            <label>currency</label><br>
+            <input id="currency" type="text"><br>
+
+            <label>description</label><br>
+            <input id="description" type="text"><br>
+
+            <button type="button" onclick="submit()">submit</button>
+
+        <script>
+            function submit() {
+                const total = document.querySelector('#total').value;
+                const currency = document.querySelector('#currency').value;
+                const description = document.querySelector('#description').value;
+
+                fetch('http://localhost:8081/payment/create', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        total,
+                        currency,
+                        description
+                    }),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8'
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
